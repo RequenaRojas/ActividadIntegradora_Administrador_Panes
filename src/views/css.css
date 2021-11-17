@@ -1,0 +1,26 @@
+    .box{
+    position: relative;
+    z-index: 3;
+    border: 1px solid #FFF;
+    padding: 64px;
+    width: 100%;
+    }
+
+    
+    .box-container{  
+    position: relative;
+    width: 400px;
+    }
+    .box-container:before{
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    background-image: url("http://drive.google.com/uc?export=view&id=1-4P7y1KxJUu32Fu2HmpsKkBM5Ii5-Fgp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.4;
+    }

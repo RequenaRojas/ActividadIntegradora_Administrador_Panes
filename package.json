@@ -1,0 +1,27 @@
+{
+  "name": "administrador-de-panes",
+  "version": "beta",
+  "description": "evidencia Integradora, 3 Parcial  para la materia de Sistemas Distribuidos, Soy Requena Rojas Moisés Sófocles",
+  "main": "./src/index.js",
+  "scripts": {
+    "dev":  "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RequenaRojas/ActividadIntegradora_Administrador_Panes.git"
+  },
+  "author": "Requena Rojas Moisés Sófocles",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RequenaRojas/ActividadIntegradora_Administrador_Panes/issues"
+  },
+  "homepage": "https://github.com/RequenaRojas/ActividadIntegradora_Administrador_Panes#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
