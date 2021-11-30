@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="./css/estilo.css">
         <link rel="shortcut icon" href="https://assets.pinterest.com/ext/embed.html?id=67624431883447156">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-      </head>
+    </head>
       <body>
           
         <div class="flexbox" style="align-items: center;">
@@ -15,11 +15,7 @@
                 <div class="título">
                     <a href="/">Las conchitas</a>
                 </div>
-                    <nav>
-                        <a href="/">Inicio</a>
-                        <a href="/Administrador">Administrador</a>
-                        <a href="/Tienda">Tienda</a>
-                    </nav>
+                    
             </header> 
         </div>
 
@@ -27,8 +23,9 @@
 
     <section class="contenedorPrincipal">
         <div class="div-form">
-            <form  onsubmit="" name="formUsu" method="post" action="Registro.jsp" >  
-                <h2 class="h2-tienda" style="text-align: left;">Por favor, ingrese sus datos:</h2>
+            <form  name="formUsu" method="post" action="/MtrRegistroUsuario >  
+                <h1  style="text-align: left;">Crear Cuenta</h1>
+                <h2  style="text-align: left;">Por favor, ingrese sus datos:</h2>
                 <br><br>
                 <p class="text">Nombre:</p>
                 <br>
@@ -46,9 +43,13 @@
                 <br>
                 <input class="campo" type="date" name="fechNaci_usu">
                 <br><br>
-                <p class="text">Domicilio: </p>
+                <p class="text">User (para el inicio de sesión): </p>
                 <br>
-                <input class="campo" type="text" name="email"  >
+                <input class="campo" type="text" name="user_usuario" >
+                <br><br>
+                <p class="text">Password: </p>
+                <br>
+                <input class="campo" type="text" name="pass_usuario" >
                 <br><br>
                 <p class="text">Teléfono celular: </p>
                 <br>
@@ -57,11 +58,34 @@
                 <p class="text">Teléfono particular: </p>
                 <br>
                 <input class="campo" type="tel" name="telaPart"  >
-                <br>
-                <br>
-                <input class="botón" type="submit" value="Enviar datos de registro">
                 <br><br>
-                <input class="botón" type="reset" value="Borrar datos de registro">
+                <h2 class="text">Domicilio: </h2>
+                <br><br>
+                <p class="text">Colonia: </p>
+                <br>
+                <select name="colonia"  class="datosP" required>
+                <% 
+                    for(var i=0; i < col.length; i++){
+                %>
+                    <option value = "<%=i %>" > <%=col[i] %>  </option>
+                <%
+                    }
+                %>
+                </select>
+                <br><br>
+                
+                
+                <p class="text">Calle: </p>
+                <br>
+                <input class="campo" type="text" name="calle_dirrec" >
+                <br><br>
+                
+                
+                <br>
+                <br>
+                <input class="botón" type="submit" value="Registrarme">
+                <br><br>
+                <input class="botón" type="reset" value="Borrar datos">
             </form>
         </div>   
     </section>

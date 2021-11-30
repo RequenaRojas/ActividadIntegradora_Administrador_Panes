@@ -1,0 +1,198 @@
+
+
+
+--Servidor
+--nombreBD: LasConchitasBD
+--host: lasconchitasUser
+--pass: Bo1i11@D6a7o#
+
+
+CREATE TABLE [dbo].[CAlcaldia](
+	[id_alcaldia] [int] PRIMARY KEY IDENTITY (1,1) NOT NULL,
+	[nombre_alcaldia] [nchar](50) NOT NULL
+) 
+
+CREATE TABLE [dbo].[CColonia](
+	[id_colonia] [int] PRIMARY KEY IDENTITY (1,1) NOT NULL,
+	[nombre_colonia] [nchar](50) NOT NULL,
+	[id_alcaldia] [int] NOT NULL,
+	CONSTRAINT FK_CColonia_CAlcaldia FOREIGN KEY (id_alcaldia) REFERENCES CAlcaldia(id_alcaldia)
+)
+
+CREATE TABLE [dbo].[DDirrecion](
+	[id_dirrec] [int] PRIMARY KEY IDENTITY (1,1) NOT NULL,
+	[calle_dirrec] [nchar](50) NOT NULL,
+	[num_ext_dirrec] [int] NOT NULL,
+	[num_int_dirrec] [int] NOT NULL,
+	[id_colonia] [int] NOT NULL,
+	CONSTRAINT FK_DDirrecion_CColonia FOREIGN KEY (id_colonia) REFERENCES CColonia(id_colonia)
+)
+
+
+CREATE TABLE [dbo].[MUsuario](
+	[id_usuario] [int] PRIMARY KEY IDENTITY (1,1) NOT NULL,
+	[nombre_usuario] [nchar](50) NOT NULL,
+	[appat_usuario] [nchar](50) NOT NULL,
+	[apmat_usuario] [nchar](50) NOT NULL,
+	[fecNaci_usuario] [DATE] NOT NULL,
+	[tel_usuario] [int] NOT NULL,
+	[cel_usuario] [int] NOT NULL,
+	[user_usuario] [nchar](50) NOT NULL,
+	[pass_usuario] [nchar](50) NOT NULL,
+	[priv_usuario] [int] NOT NULL,
+	[id_dirrec] [int] NOT NULL,
+	CONSTRAINT FK_MUsuario_DDirrecion FOREIGN KEY (id_dirrec) REFERENCES DDirrecion(id_dirrec)
+)
+
+
+
+CREATE TABLE [dbo].[MProducto](
+	[id_producto] [int] PRIMARY KEY IDENTITY (1,1) NOT NULL,
+	[nombre_producto] [nchar](50) NOT NULL,
+	[idDrive_img] [nchar](50) NOT NULL,
+	[precio_producto] [float] NOT NULL
+)
+
+CREATE TABLE [dbo].[MCompra](
+	[id_compra] [int] PRIMARY KEY IDENTITY (1,1) NOT NULL,
+	[fechaPagado_compra] [DATE]  NULL,
+	[total_compra] [float] NOT NULL,
+	[completado] [tinyint] NOT NULL,
+	[id_usuario] [int] NOT NULL,
+	CONSTRAINT FK_MCompra_MUsuario FOREIGN KEY (id_usuario) REFERENCES MUsuario(id_usuario)
+	
+)
+
+CREATE TABLE [dbo].[DCompra](
+	[id_dcompra] [int] PRIMARY KEY IDENTITY (1,1) NOT NULL,
+	[id_compra] [int] NOT NULL,
+	[id_producto] [int] NOT NULL,
+	[cantidad_dcompra] [int] NOT NULL,
+	[subtotal_dcompra] [float] NOT NULL,
+	CONSTRAINT FK_DCompra_MCompra FOREIGN KEY (id_compra) REFERENCES MCompra(id_compra),
+	CONSTRAINT FK_DCompra_MProducto FOREIGN KEY (id_producto) REFERENCES MProducto(id_producto)
+	
+)
+
+
+/****  INSERTAR LOS DATOS DEL CATALOGO CALCALDIA***/
+
+INSERT INTO [dbo].[CAlcaldia]
+           ([nombre_alcaldia])
+     VALUES
+           ('Alvaro Obregon')
+
+INSERT INTO [dbo].[CAlcaldia]
+           ([nombre_alcaldia])
+     VALUES
+           ( 'Azcapotzalco')
+
+INSERT INTO [dbo].[CAlcaldia]
+           ([nombre_alcaldia])
+     VALUES
+           ('Benito Juarez')
+
+INSERT INTO [dbo].[CAlcaldia]
+           ([nombre_alcaldia])
+     VALUES
+           ('Coyoacan')
+
+INSERT INTO [dbo].[CAlcaldia]
+           ([nombre_alcaldia])
+     VALUES
+           ('Cuajimalpa de Morelos')
+
+INSERT INTO [dbo].[CAlcaldia]
+           ([nombre_alcaldia])
+     VALUES
+           ('Cuauhtemoc')
+
+INSERT INTO [dbo].[CAlcaldia]
+           ([nombre_alcaldia])
+     VALUES
+           ('Gustavo A. Madero')
+
+INSERT INTO [dbo].[CAlcaldia]
+           ([nombre_alcaldia])
+     VALUES
+           ('Iztacalco')
+
+INSERT INTO [dbo].[CAlcaldia]
+           ([nombre_alcaldia])
+     VALUES
+           ('Iztapalapa')
+INSERT INTO [dbo].[CAlcaldia]
+           ([nombre_alcaldia])
+     VALUES
+           ('La Magdalena Contreras')
+
+INSERT INTO [dbo].[CAlcaldia]
+           ([nombre_alcaldia])
+     VALUES
+           ('Miguel Hidalgo')
+
+INSERT INTO [dbo].[CAlcaldia]
+           ([nombre_alcaldia])
+     VALUES
+           ('Milpa Alta')
+
+INSERT INTO [dbo].[CAlcaldia]
+           ([nombre_alcaldia])
+     VALUES
+           ('Tlahuac')
+INSERT INTO [dbo].[CAlcaldia]
+           ([nombre_alcaldia])
+     VALUES
+           ('Tlalpan')
+
+INSERT INTO [dbo].[CAlcaldia]
+           ([nombre_alcaldia])
+     VALUES
+           ('Venustiano Carranza')
+
+INSERT INTO [dbo].[CAlcaldia]
+           ([nombre_alcaldia])
+     VALUES
+           ('Xochimilco')
+
+Select * from dbo.CAlcaldia;
+
+
+/*** INSERTAR LOS DATOS EN CCOLONIA***/
+
+INSERT INTO [dbo].[CColonia]
+           ([nombre_colonia]
+           ,[id_alcaldia])
+     VALUES
+           ('Ignacio Zaragoza I'
+           ,'15')
+
+INSERT INTO [dbo].[CColonia]
+           ([nombre_colonia]
+           ,[id_alcaldia])
+     VALUES
+           ('Ignacio Zaragoza II'
+           ,'15')
+
+INSERT INTO [dbo].[CColonia]
+           ([nombre_colonia]
+           ,[id_alcaldia])
+     VALUES
+           ('Miguel Hidalgo'
+           ,'15')
+
+INSERT INTO [dbo].[CColonia]
+           ([nombre_colonia]
+           ,[id_alcaldia])
+     VALUES
+           ('Lorenzo Boturini'
+           ,'15')
+
+INSERT INTO [dbo].[CColonia]
+           ([nombre_colonia]
+           ,[id_alcaldia])
+     VALUES
+           ('Merced Balbuena'
+           ,'15')
+	   
+   Select * from dbo.CAlcaldia;

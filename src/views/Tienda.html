@@ -20,9 +20,17 @@
 
                     <a href="/Carrito">Carrito</a>
 
-
-                    <a href="/InSeUsuario">Iniciar Sesión</a>
-                    
+                    <% 
+                        if(usu != null){
+                    %>
+                        <a href="/ConfigUsuario">Configuración Usuario</a>
+                    <%
+                        }else{
+                    %>
+                        <a href="/InSeUsuario">Iniciar Sesión</a>
+                    <%
+                        }
+                    %>
                 </nav>
         </header> 
     </div>

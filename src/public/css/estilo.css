@@ -326,6 +326,21 @@ a.linkPromo{
   text-decoration: none;
 }
 
+
+h1{
+  color: #e05846;
+  text-shadow: 2px 2px 2px black;
+  font-size: 5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-top:40px;
+  margin-left: 40px;
+  margin-right: 40px;
+  cursor: default;
+  font-family:  serif;
+}
+
 h2{
   color: #e05846;
   text-shadow: 2px 2px 2px black;
@@ -340,15 +355,7 @@ h2{
   font-family:  serif;
 }
 
-/* h2.h2-tienda{
-  color: rgb(253, 210, 50);
-  text-align: center;
-}
 
-h2.h2-admin{
-  color:rgb(147, 235, 149);
-  text-align: center;
-} */
 
 p.text{
   color: rgb(255, 255, 255);
@@ -493,6 +500,7 @@ footer{
   margin-top: 40px;
   color: rgb(255, 255, 255);
   background-color: #CD6858;
+  padding-bottom: 3rem;
 }
 
 .footer-tienda{
