@@ -4,6 +4,7 @@
   "description": "evidencia Integradora, 3 Parcial  para la materia de Sistemas Distribuidos, Soy Requena Rojas Moisés Sófocles",
   "main": "./src/index.js",
   "type": "module",
+  "start" : "./src/index.js",
   "scripts": {
     "dev": "nodemon src/index.js"
   },
