@@ -12,14 +12,14 @@ const __dirname = dirname(__filename);
 
 // settings
 app.set('port', process.env.PORT || 3030);
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, './src/views'));
 app.engine('html',ejs.renderFile)
 app.set('view engine', 'ejs');
 
 // middlewares
 app.use(morgan('dev'));
 
-import routes from './routes/index.js';
+import routes from './src/routes/index.js';
 
 // routes
 app.use(routes);
