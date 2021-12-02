@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/Tienda', async (req, res) => {
-     //Sobre la sesión
+     
     const usu = await getSession(req, res);
 
     res.render('Tienda.html', { usu: usu});
@@ -40,6 +40,14 @@ router.get('/RegistroUsuario', async  (req, res) => {
     const col = await RegistroUsuario(req, res);
     res.render('RegistroUsuario.html', {col: col});
 });
+
+router.get('/InSeUsuario', async (req, res) => {
+    const usu = await getSession(req, res);
+
+    res.render('InSeUsuario.html', { usu: usu});
+});
+
+
 
 router.get('/MtrRegistroUsuario', async (req, res) => {
 
@@ -59,14 +67,6 @@ router.get('/MtrInSeUsuario', async (req, res) => {
     res.render('MtrInSeUsuario.html', {user: userDirrec[0], dirrec: userDirrec[1]});
 });
 
-
-
-router.get('/InSeUsuario', async (req, res) => {
-    const usu = await getSession(req, res);
-
-    res.render('InSeUsuario.html', { usu: usu});
-});
-
 router.get('/MtrCerrarSesion', async (req, res) => {
     
     req.session.destroy();
@@ -74,8 +74,15 @@ router.get('/MtrCerrarSesion', async (req, res) => {
     res.render('MtrCerrarSesion.html');
 });
 
-router.get('/ConfigUsuario', (req, res) => {
-    res.render('ConfigUsuario.html');
+router.get('/ConfigUsuario', async (req, res) => {
+    const usu = await getSession(req, res);
+
+    if(!usu){
+        res.render('index.html', { usu: usu});
+    }else{
+        res.render('ConfigUsuario.html', { usu: usu});
+    }
+    
 });
 
 export default router;
