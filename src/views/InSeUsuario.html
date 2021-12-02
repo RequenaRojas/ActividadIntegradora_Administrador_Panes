@@ -17,28 +17,36 @@
             <nav>
                 <a href="/Tienda">Tienda</a>
 
-                <a href="/Carrito">Carrito</a>
-
-
-                <a href="/InSeUsuario">Iniciar Sesión</a>
-
-                <a href="/ConfigUsuario">Configuración Usuario</a>
-                
+                <%
+                    if(!usu){
+                %>
+                    <a href="/InSeUsuario">Iniciar Sesión</a>
+                    <p class="text" style="padding-left: 2rem;">Sin sesión abierta</p>
+                <%
+                }else{
+                %>
+                   <a href="/Carrito">Carrito</a>
+                    <a href="/ConfigUsuario">Configuración Usuario</a>
+                    <p class="text" style="padding-left: 2rem;" >Hola: <%=usu.nombre_usuario %></p>
+                  
+                <%
+                }
+                %>
             </nav>
         </header> 
     </div>
 
     
     <section class="contenedorPrincipal">
-        <form  onsubmit="" name="formElimUsu" method="post" action="RegistroAdmin.jsp">  
+        <form  onsubmit="" name="formElimUsu"  action="/MtrInSeUsuario">  
             <br><br>
             <h2 style="text-align: left;">Iniciar Sesión Usuario:</h2>
             <br><br>
-            <p class="text">Correo: </p>
-            <input class="campo" type="text" name="id_usu" pattern="\d+" >
+            <p class="text">User: </p>
+            <input class="campo" type="text" name="user_usuario"  >
 
             <p class="text">Contraseña: </p>
-            <input class="campo" type="text" name="id_usu" pattern="\d+" >
+            <input class="campo" type="password" name="pass_usuario"  >
             <br><br>
             <input class="botón" type="submit" value="Enviar">
             <br><br><br><br><br><br><br><br><br><br>

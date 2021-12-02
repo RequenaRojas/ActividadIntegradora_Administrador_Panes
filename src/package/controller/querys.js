@@ -2,17 +2,21 @@
 export const queries = {
 
     /** CATALOGOS () */
-    getAllColonia: 'SELECT * FROM CColonia',
+    getAllColonia: 'SELECT * FROM CColonia ORDER BY id_colonia',
     getAllAlcaldia: 'SELECT * FROM CAlcaldia',
     getAllColonia_idAlcaldia: 'SELECT nombre_colonia FROM CColonia WHERE id_alcaldia = @id_alcaldia',
 
+    getColonia: 'SELECT * FROM CColonia WHERE id_colonia = @id_colonia',
 
-    getAlcaldia: 'SELECT id_alcaldia FROM CAlcaldia WHERE nombre_alcaldia = @nombre_alcaldia',
+    
+    getIDAlcaldia: 'SELECT id_alcaldia FROM CAlcaldia WHERE nombre_alcaldia = @nombre_alcaldia',
+    getAlcaldia: 'SELECT nombre_alcaldia FROM CAlcaldia WHERE id_alcaldia = @id_alcaldia',
     insertDirrecion: 'INSERT INTO [dbo].[DDirrecion]'+
                     '(calle_dirrec'+
                     ',num_ext_dirrec'+
                     ',num_int_dirrec'+
-                    'id_colonia)'+
+                    ',id_colonia)'+
+                    'OUTPUT INSERTED.id_dirrec '+
                     'VALUES'+
                     '(@calle_dirrec'+
                     ',@num_ext_dirrec'+
@@ -50,6 +54,7 @@ export const queries = {
                     ',[pass_usuario]'+
                     ',[priv_usuario]'+
                     ',[id_dirrec])'+
+                    'OUTPUT INSERTED.id_usuario  '+
                     'VALUES'+
                     '(@nombre_usuario'+
                     ',@appat_usuario'+
@@ -63,7 +68,7 @@ export const queries = {
                     ',@id_dirrec)',
     
     getUsuario: 'SELECT * FROM [dbo].[MUsuario] WHERE user_usuario = @user_usuario'+
-                'AND pass_usuario = @pass_usuario',
+                '   AND pass_usuario = @pass_usuario',
     
     getIDDirrec: 'SELECT id_dirrec FROM [dbo].[MUsuario]'+
                  'WHERE id_usuario = @id_usuario',

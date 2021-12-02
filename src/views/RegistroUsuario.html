@@ -22,10 +22,11 @@
 
 
     <section class="contenedorPrincipal">
-        <div class="div-form">
-            <form  name="formUsu" method="post" action="/MtrRegistroUsuario >  
-                <h1  style="text-align: left;">Crear Cuenta</h1>
-                <h2  style="text-align: left;">Por favor, ingrese sus datos:</h2>
+        <form  name="formUsu" method="get" action="/MtrRegistroUsuario" > 
+             <div class="div-form">
+             
+                <h1  style="text-align: center;">Crear Cuenta</h1>
+                <h2  style="text-align: left; ">Por favor, ingrese sus datos:</h2>
                 <br><br>
                 <p class="text">Nombre:</p>
                 <br>
@@ -43,13 +44,16 @@
                 <br>
                 <input class="campo" type="date" name="fechNaci_usu">
                 <br><br>
+
+             </div>
+             <div class="div-form">
                 <p class="text">User (para el inicio de sesión): </p>
                 <br>
                 <input class="campo" type="text" name="user_usuario" >
                 <br><br>
                 <p class="text">Password: </p>
                 <br>
-                <input class="campo" type="text" name="pass_usuario" >
+                <input class="campo" type="password" name="pass_usuario" >
                 <br><br>
                 <p class="text">Teléfono celular: </p>
                 <br>
@@ -63,31 +67,36 @@
                 <br><br>
                 <p class="text">Colonia: </p>
                 <br>
-                <select name="colonia"  class="datosP" required>
+                <select name="id_colonia"  class="datosP" required>
                 <% 
                     for(var i=0; i < col.length; i++){
+                        const j = i+1;
+                      //  console.log(j);
                 %>
-                    <option value = "<%=i %>" > <%=col[i] %>  </option>
+                    <option value = "<%=j %>" > <%=col[i] %>  </option>
                 <%
                     }
                 %>
                 </select>
                 <br><br>
-                
-                
+                <p class="text">Num. interior (Si no tiene ponga 0): </p>
+                <br>
+                <input class="campo" type="text" name="num_int_dirrec" >
+                <br><br>
+                <p class="text">Num. exterior: </p>
+                <br>
+                <input class="campo" type="text" name="num_ext_dirrec" >
+                <br><br>
                 <p class="text">Calle: </p>
                 <br>
                 <input class="campo" type="text" name="calle_dirrec" >
                 <br><br>
                 
-                
-                <br>
-                <br>
                 <input class="botón" type="submit" value="Registrarme">
                 <br><br>
                 <input class="botón" type="reset" value="Borrar datos">
-            </form>
-        </div>   
+            </div> 
+        </form>  
     </section>
     
   </body>

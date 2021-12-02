@@ -1,10 +1,18 @@
 import {initConnection, closeConnection } from "../package/controller/connection.js";
-import { getColonias_model } from "../package/model/Modelo.js";
+import { getAllColAldias } from "../package/model/Modelo.js";
 
 
 export const RegistroUsuario = async (req, res) => {
-    const pool = await initConnection();
-    const valuesCombobox = await  getColonias_model(pool);
+    var pool = null;
+    try{
+        pool = await initConnection();
+    }catch(err){console.log(err);}
+    
+    var  valuesCombobox = null;
+    try{
+        valuesCombobox = await  getAllColAldias(pool);
+    }catch(err){console.log(err)};
+    
 
     await closeConnection(pool);
     return valuesCombobox;

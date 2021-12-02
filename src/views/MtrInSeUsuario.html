@@ -20,18 +20,18 @@
         
     <section class="contenedorPrincipal">
 <%  
-            // Error en el Registro
+            // Error en el Inicio de Sesion
             if(user == null ){
 %>
                 <h1 class="h2-tienda" style="text-align: center;">Ocurrio un error （；´д｀）ゞ</h1>
 <%
-            // Registro exitoso
+            // Inicio de Sesion exitoso
             }else{
 %>
-                <h1 class="h2-tienda" style="text-align: center;">Usuario registrado con éxito</h1>
+                <h1 class="h2-tienda" style="text-align: center;">Inicio de Sesión Exitoso</h1>
                 <br>
                 <br>
-                <p class="texto" style="text-align: center; margin-top:40px; margin-left: 40px; margin-right: 40px;">
+                <p class="text" style="text-align: center; margin-top:40px; margin-left: 40px; margin-right: 40px;">
                     Nombre: <%=user.nombre_usuario%> <%=user.appat_usuario%> <%=user.apmat_usuario%>
                 <br><br>
                     Fecha de nacimiento: <%=user.fecNaci_usuario.getDate()%>/<%=user.fecNaci_usuario.getMonth()%>/<%=user.fecNaci_usuario.getFullYear()%>
@@ -40,8 +40,9 @@
                 <br><br>
                     Teléfono celular: <%=user.cel_usuario%>
                 </p>
-                <h2 class="h2-tienda" style="text-align: center;">Domicilio</h2>
-                <p class="texto" style="text-align: center; margin-top:40px; margin-left: 40px; margin-right: 40px;">
+                <br><br>
+                <h2  style="text-align: center; padding-top: 15rem; ">Domicilio</h2>
+                <p class="text" style="text-align: center; margin-top:40px; margin-left: 40px; margin-right: 40px;">
                     Colonia: <%=dirrec.colAldia%> 
                 <br><br>
                     Calle: <%=dirrec.calle_dirrec%>

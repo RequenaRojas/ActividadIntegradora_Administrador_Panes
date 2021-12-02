@@ -25,12 +25,27 @@
     <div class="flexbox" style="align-items: center;">
 
         <header>
+            
             <div class="título">
                 <a href="/">Las conchitas</a>
             </div>
                 <nav>
-                    <a href="/InSeAdministrador">Administrador</a>
                     <a href="/Tienda">Tienda</a>
+                    <%
+                    if(!usu){
+                    %>
+                        <a href="/InSeUsuario">Iniciar Sesión</a>
+                        <p class="text" style="padding-left: 2rem;">Sin sesión abierta</p>
+                    <%
+                    }else{
+                    %>
+                        <a href="/ConfigUsuario">Configuración Usuario</a>
+                        <p class="text" style="padding-left: 2rem;" >Hola: <%=usu.nombre_usuario %></p>
+                       
+                    <%
+                    }
+                    %>
+                    
                 </nav>
         </header> 
     </div>

@@ -1,0 +1,44 @@
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Benito y Gerardo</title>
+        <link rel="stylesheet" href="./css/estilo.css">
+        <link rel="shortcut icon" href="https://assets.pinterest.com/ext/embed.html?id=67624431883447156">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    </head>
+      <body>
+
+        <div class="flexbox" style="align-items: center;">
+
+            <header>
+                <div class="título">
+                    <a href="/">Las conchitas</a>
+                </div>
+                    
+            </header> 
+        </div>
+        
+    <section class="contenedorPrincipal">
+<%  
+            // Error en el Registro
+            try{
+%>
+                <h1 class="h2-tienda" style="text-align: center;">Se ha cerrado la sesión con Exito</h1>
+<%
+            // Registro exitoso
+            }catch{
+%>
+<h1 class="h2-tienda" style="text-align: center;">Ocurrio un error （；´д｀）ゞ</h1>
+    <%
+            }
+    %>
+     </section>
+     <footer class="footer" >
+        <p >
+            <a class="link-footer" href="/Tienda"> Ir a la Tienda</a>
+        </p>
+      </footer>
+    
+    </body>
+</html>

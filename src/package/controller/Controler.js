@@ -26,11 +26,38 @@ export const getAllColonia_idAlcaldia = async (id_alcaldia, pool) => {
     return results.recordset;
 }
 
-export const getAlcaldia = async (nombre_alcaldia, pool) => {
+export const getIDAlcaldia = async (nombre_alcaldia, pool) => {
     const request = new sql.Request(pool);
     const results = await request.input('nombre_alcaldia', sql.NChar(50), nombre_alcaldia)
+                                 .query(queries.getIDAlcaldia);
+    return results.recordset[0].id_alcaldia;
+}
+
+export const getColonia = async (id_colonia, pool) => {
+    const request = new sql.Request(pool);
+    const results = await request.input('id_colonia', sql.Int, id_colonia)
+                                 .query(queries.getColonia);
+    // console.log(results.recordset[0].nombre_colonia);
+    return results.recordset[0];
+}
+
+export const getAlcaldiaByIDColonia = async (id_colonia, pool) => {
+    try{
+        const alcaldia = await getColonia(id_colonia, pool);
+        const nombre_alcaldia = await getAlcaldia(alcaldia.id_alcaldia, pool);
+    return nombre_alcaldia;
+    }catch(err){
+        console.log(err);
+        return null;
+    }
+}
+
+export const getAlcaldia = async (id_alcaldia, pool) => {
+    const request = new sql.Request(pool);
+    const results = await request.input('id_alcaldia', sql.Int, id_alcaldia)
                                  .query(queries.getAlcaldia);
-    return results.recordset;
+    console.log(results.recordset[0]);
+    return results.recordset[0].nombre_alcaldia;
 }
 
 /**
@@ -48,9 +75,9 @@ export const insertDirrecion = async (calle_dirrec, num_ext_dirrec,
                                  .input('num_ext_dirrec', sql.Int, num_ext_dirrec)
                                  .input('num_int_dirrec', sql.Int, num_int_dirrec) 
                                  .input('id_colonia', sql.Int, id_colonia)
-                                 .output('id_dirrec', sql.Int)
                                  .query(queries.insertDirrecion);
-    return results.output;
+    // console.log(results , 'RESULTADOS');
+    return results.recordset[0].id_dirrec;
 }
 
 export const updateDirrecion =  async (id_dirrec, calle_dirrec, num_ext_dirrec,
@@ -67,10 +94,11 @@ export const updateDirrecion =  async (id_dirrec, calle_dirrec, num_ext_dirrec,
 
 export const getDirrecion = async (id_dirrec, pool) => {
     try{
+        
         const request = new sql.Request(pool);
         const results = await request.input('id_dirrec', sql.Int, id_dirrec)
                                     .query(queries.getDirrecion);
-        return results.recordset;
+        return results.recordset[0];
     }catch(err){
         console.log(err)
         return null;
@@ -124,26 +152,26 @@ export const insertUsuario = async (nombre_usuario, appat_usuario,
             .input('appat_usuario', sql.NChar(50), appat_usuario) 
             .input('apmat_usuario', sql.NChar(50), apmat_usuario)
             .input('fecNaci_usuario', sql.Date, fecNaci_usuario)
-            .input('tel_usuario', sql.Int, tel_usuario) 
-            .input('cel_usuario', sql.Int, cel_usuario)
+            .input('tel_usuario', sql.NChar(50), tel_usuario) 
+            .input('cel_usuario', sql.NChar(50), cel_usuario)
             .input('user_usuario', sql.NChar(50), user_usuario)
             .input('pass_usuario', sql.NChar(50), pass_usuario) 
             .input('priv_usuario', sql.Int, priv_usuario)
-            .input('id_dirrec', sql.Int, id_dirrec)
-            .output('id_usuario', sql.Int);
+            .input('id_dirrec', sql.Int, id_dirrec);
 
     const results = await request.query(queries.insertUsuario);
-    return results.output;
+    return results.recordset[0].id_usuario;
 }
 
-export const getUsuario = (user_usuario, pass_usuario, pool) => {
+export const getUsuario = async (user_usuario, pass_usuario, pool) => {
     try{
         const request = new sql.Request(pool);
-        request.input('user_usuario', sql.NChar(50), user_usuario)
-                .input('pass_usuario', sql.NChar(50), pass_usuario);
-        
-        const results =   request.query(queries.getUsuario);
-        return results.recordset;
+        const results = await request.input('user_usuario', sql.NChar(50), user_usuario)
+                .input('pass_usuario', sql.NChar(50), pass_usuario)
+                .query(queries.getUsuario);
+
+        // console.log(results, 'en getUsuario');
+        return results.recordset[0];
     }catch(err){
         console.log(err);
         return null;

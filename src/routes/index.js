@@ -1,10 +1,11 @@
 import express from 'express';
 import session from 'express-session';
+import { MtrInSeUsuario } from './MtrInSeUsuario.js';
 
-import { initConnection, closeConnection } from '../package/controller/connection.js';
-import { getColonias_model } from '../package/model/Modelo.js';
+
+import { MtrRegistroUsuario } from './MtrRegistroUsuario.js';
 import { RegistroUsuario } from './RegistroUsuario.js';
-import { getSession } from './Sesiones.js';
+import { getSession , setSession} from './Sesiones.js';
 
 const router = express.Router();
 router.use(session({
@@ -15,19 +16,18 @@ router.use(session({
 
 
   
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
 
-    //PENDIENTE
-    //Sobre la sesión
-    const usu = getSession(req, res);
+    const usu = await getSession(req, res);
 
+    console.log(usu);
 
     res.render('index.html', {usu: usu});
 });
 
-router.get('/Tienda', (req, res) => {
+router.get('/Tienda', async (req, res) => {
      //Sobre la sesión
-    const usu = getSession(req, res);
+    const usu = await getSession(req, res);
 
     res.render('Tienda.html', { usu: usu});
 });
@@ -36,31 +36,42 @@ router.get('/Carrito', (req, res) => {
     res.render('Carrito.html');
 });
 
-router.get('/InSeAdministrador', (req, res) => {
-    res.render('InSeAdministrador.html');
-});
-
-router.get('/RegistroUsuario', (req, res) => {
-
-    var col = null
-    try{
-         col =  RegistroUsuario(req, res);
-    }catch(err){
-        console.log(err);
-    }
+router.get('/RegistroUsuario', async  (req, res) => {
+    const col = await RegistroUsuario(req, res);
     res.render('RegistroUsuario.html', {col: col});
 });
 
-router.get('/MtrRegistroUsuario', (req, res) => {
+router.get('/MtrRegistroUsuario', async (req, res) => {
 
-    
-    res.render('MtrRegistroUsuario.html');
+    const userDirrec = await  MtrRegistroUsuario(req, res);
+    await setSession(req, res, userDirrec[0], userDirrec[1]);
+
+
+    res.render('MtrRegistroUsuario.html', {user: userDirrec[0], dirrec: userDirrec[1]});
+});
+
+router.get('/MtrInSeUsuario', async (req, res) => {
+
+    const userDirrec = await  MtrInSeUsuario(req, res);
+    await setSession(req, res, userDirrec[0], userDirrec[1]);
+
+
+    res.render('MtrInSeUsuario.html', {user: userDirrec[0], dirrec: userDirrec[1]});
 });
 
 
 
-router.get('/InSeUsuario', (req, res) => {
-    res.render('InSeUsuario.html');
+router.get('/InSeUsuario', async (req, res) => {
+    const usu = await getSession(req, res);
+
+    res.render('InSeUsuario.html', { usu: usu});
+});
+
+router.get('/MtrCerrarSesion', async (req, res) => {
+    
+    req.session.destroy();
+
+    res.render('MtrCerrarSesion.html');
 });
 
 router.get('/ConfigUsuario', (req, res) => {

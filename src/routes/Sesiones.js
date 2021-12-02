@@ -1,5 +1,5 @@
 import { getUsuario_model } from '../package/model/Modelo.js';
-export const getSession = (req, res) => {
+export const getSession = async (req, res) => {
     
     if(req.session.usu){
         return req.session.usu;
@@ -11,4 +11,14 @@ export const getSession = (req, res) => {
     }else{
         return null
     }
+}
+
+export const setSession = async (req, res, user, dirrec) => {
+    try{
+        req.session.usu = user;
+        req.session.dirrec = dirrec;
+    }catch(err){
+        console.log(err);
+    }
+
 }
